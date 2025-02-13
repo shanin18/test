@@ -4,29 +4,62 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <header>
-      <nav>
-        <div class="navbar-wrapper">
-            <div>
-                <a href="#">Home</a>
-                <a href="#">Contact Us</a>
-                <a href="#">About Us</a>
+      <nav class="navbar">
+        <div class="container">
+          <div class="navbar-wrapper">
+            <div class="nav-links-wrapper">
+              <a href="#">Home</a>
+              <a href="#">Contact Us</a>
+              <a href="#">About Us</a>
             </div>
             <div>
-                <img src="./assets/logo.png" alt="logo">
+              <img src="./assets/logo.png" alt="logo" />
             </div>
-            <div>
-                <button>Sign Up</button>
-                <button>Log In</button>
-                <select>
-                    <option value=""></option>
-                    <option value=""></option>
-                    <option value=""></option>
-                </select>
+            <div class="action-wrapper">
+              <!-- <button class="button">Sign Up</button> -->
+
+              <a href="#" class="btn-ghost">
+                <div>
+                  <span>Sign Up</span>
+                  <span>Sign Up</span>
+                </div>
+              </a>
+              <a href="#" class="btn-fill">Log In</a>
+              <div class="dropdown">
+                <div class="dropdown-btn" id="selected-lang">
+                  <img src="./assets/flag.png" alt="English" />
+                  <span class="arrow">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="9"
+                      height="6"
+                      viewBox="0 0 9 6"
+                      fill="none"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M4.47634 5.01749L0.964577 0.982514L8.03564 0.982513C8.01816 1 4.47634 5.01749 4.47634 5.01749Z"
+                        fill="#121212"
+                      />
+                    </svg>
+                  </span>
+                </div>
+                <div class="dropdown-content" id="dropdown">
+                  <div
+                    data-lang="en"
+                    data-flag="./assets/flag.png"
+                  >
+                    <img src="./assets/flag.png" alt="English" />
+                  </div>
+                </div>
+              </div>
             </div>
+          </div>
         </div>
       </nav>
     </header>
