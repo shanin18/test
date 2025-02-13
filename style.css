@@ -103,12 +103,17 @@ body {
     color: var(--primary);
 }
 
+.nav-link-active {
+    color: var(--primary) !important;
+}
+
 .action-wrapper {
     display: flex;
     align-items: center;
     gap: 16px;
 }
 
+/* btn ghost */
 .btn-ghost {
     position: relative;
     width: 90px;
@@ -181,7 +186,6 @@ body {
     transform: translateY(0);
 }
 
-/* Hover Effect */
 .btn-ghost:hover {
     background: var(--primary);
     transition: background 0.2s linear;
@@ -207,7 +211,10 @@ body {
 .btn-ghost:hover span:last-child {
     transform: translateY(-24px);
 }
+/* btn ghost */
 
+
+/* btn fill */
 .btn-fill{
     width: 90px;
     height: 44px;
@@ -221,7 +228,9 @@ body {
     align-items: center;
     justify-content: center;
 }
+/* btn fill */
 
+/* language dropdown */
 .dropdown {
     position: relative;
     display: inline-block;
@@ -232,7 +241,7 @@ body {
     gap: 10px;
     width: 75px;
     height: 44px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--dark);
     border-radius: 8px;
     cursor: pointer;
     background: white;
@@ -291,7 +300,11 @@ body {
 .rotate {
     transform: rotate(180deg);
 }
+/* language dropdown */
+
 /* navbar ends */
 
+/* hero section starts */
+/* hero section ends */
 
 
