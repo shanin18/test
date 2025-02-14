@@ -1022,6 +1022,56 @@ body {
 
 /* career section ends */
 
+/* about us growth section starts */
+.about-us-growth {
+    padding: 80px 0;
+    position: relative;
+}
+
+.about-us-growth-left-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.about-us-growth-right-img {
+    position: absolute;
+    top: -90px;
+    right: 0px;
+}
+
+.about-us-growth-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.about-us-growth-left {
+    position: relative;
+}
+
+.about-us-growth-star {
+    position: absolute;
+    top: 60px;
+    right: 40px;
+}
+
+.about-us-growth-right h2 {
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 60px;
+    letter-spacing: -0.96px;
+    margin-bottom: 42px;
+}
+
+.about-us-growth-right {
+    max-width: 600px;
+    width: 100%;
+}
+
+/* about us growth section ends */
+
+
 /* footer starts */
 .footer {
     background-image: url("./assets/footer-bg.png");
@@ -1063,6 +1113,29 @@ body {
     font-weight: 700;
     line-height: 32px;
 }
+
+.line-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin: 16px 0;
+}
+
+.line-1,
+.line-2 {
+    height: 3px;
+    border-radius: 4px;
+    background-color: var(--primary);
+}
+
+.line-1 {
+    width: 21px;
+}
+
+.line-2 {
+    width: 45px;
+}
+
 
 .footer-links ul {
     list-style: none;
