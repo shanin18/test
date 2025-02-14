@@ -137,15 +137,53 @@
             </p>
           </div>
 
-          <div class="service-wrapper">
-            <div>
-              <img src="./assets/service.png" alt="service image" />
+          <div class="service-carousel">
+            <div class="service-wrapper" id="slider">
+              <div class="service-item">
+                <img src="./assets/service.png" alt="service image" />
+              </div>
+              <div class="service-item">
+                <img src="./assets/service-2.png" alt="service image" />
+              </div>
+              <div class="service-item">
+                <img src="./assets/service-3.png" alt="service image" />
+              </div>
             </div>
-            <div>
-              <img src="./assets/service-2.png" alt="service image" />
+
+            <div class="service-cta-wrapper">
+              <button id="prevBtn">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="12"
+                  height="20"
+                  viewBox="0 0 12 20"
+                  fill="none"
+                >
+                  <path
+                    d="M0.47752 9.28658C0.0888729 9.67523 0.0888729 10.3246 0.47752 10.7142L9.44497 19.7047C9.8386 20.0983 10.477 20.0983 10.8696 19.7047C11.2632 19.311 11.2632 18.6717 10.8696 18.278L2.6145 9.99993L10.8706 1.72283C11.2642 1.3282 11.2642 0.689838 10.8706 0.295211C10.477 -0.0984196 9.83861 -0.0984196 9.44597 0.295211L0.47752 9.28658Z"
+                    fill="#191B1F"
+                  />
+                </svg>
+              </button>
+              <button id="nextBtn">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="12"
+                  height="20"
+                  viewBox="0 0 12 20"
+                  fill="none"
+                >
+                  <path
+                    d="M10.874 9.28658C11.2627 9.67523 11.2627 10.3246 10.874 10.7142L1.90659 19.7047C1.51296 20.0983 0.874597 20.0983 0.481963 19.7047C0.0883332 19.311 0.0883332 18.6717 0.481963 18.278L8.73706 9.99993L0.480967 1.72283C0.0873374 1.3282 0.0873374 0.689838 0.480967 0.295211C0.874597 -0.0984196 1.51296 -0.0984196 1.90559 0.295211L10.874 9.28658Z"
+                    fill="#191B1F"
+                  />
+                </svg>
+              </button>
             </div>
-            <div>
-              <img src="./assets/service-3.png" alt="service image" />
+            <div class="pagination">
+              <div class="pagination-circle active"></div>
+              <div class="pagination-circle"></div>
+              <div class="pagination-circle"></div>
             </div>
           </div>
         </div>

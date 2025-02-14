@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Infinite Slider</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: Arial, sans-serif;
+      }
+      .slider-container {
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+      }
+      .slider {
+        display: flex;
+        gap: 10px;
+        transition: transform 0.5s ease-in-out;
+      }
+      .slide {
+        min-width: calc(33.33% - 10px);
+        padding: 20px;
+        text-align: center;
+        background: lightblue;
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+      }
+      .slide:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+      .controls {
+        position: absolute;
+        top: 50%;
+        width: 100%;
+        transform: translateY(-50%);
+        display: flex;
+        justify-content: space-between;
+      }
+      .controls button {
+        background: rgba(0, 0, 0, 0.5);
+        color: white;
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+      }
+      @media (max-width: 768px) {
+        .slide {
+          min-width: calc(50% - 10px);
+        }
+      }
+      @media (max-width: 480px) {
+        .slide {
+          min-width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="slider-container">
+      <div class="slider" id="slider">
+        <div class="slide">1</div>
+        <div class="slide">2</div>
+        <div class="slide">3</div>
+        <div class="slide">4</div>
+        <div class="slide">5</div>
+        <div class="slide">6</div>
+      </div>
+      <div class="controls">
+        <button id="prev">&#10094;</button>
+        <button id="next">&#10095;</button>
+      </div>
+    </div>
+    <script>
+      const slider = document.getElementById("slider");
+      const slides = document.querySelectorAll(".slide");
+      let index = 0;
+      let interval;
+
+      // Clone first and last slides for infinite effect
+      slider.appendChild(slides[0].cloneNode(true));
+      slider.insertBefore(slides[slides.length - 1].cloneNode(true), slides[0]);
+
+      function startSlider() {
+        interval = setInterval(() => moveSlide(1), 3000);
+      }
+
+      function moveSlide(dir) {
+        index += dir;
+        if (index < 0) {
+          index = slides.length - 1;
+          slider.style.transition = "none";
+          slider.style.transform = `translateX(-${index * 100}%)`;
+          requestAnimationFrame(() => {
+            setTimeout(() => {
+              slider.style.transition = "transform 0.5s ease-in-out";
+              moveSlide(1);
+            });
+          });
+          return;
+        }
+        if (index >= slides.length) {
+          index = 0;
+          slider.style.transition = "none";
+          slider.style.transform = `translateX(0%)`;
+          requestAnimationFrame(() => {
+            setTimeout(() => {
+              slider.style.transition = "transform 0.5s ease-in-out";
+              moveSlide(1);
+            });
+          });
+          return;
+        }
+        const move =
+          -(
+            index *
+            (100 /
+              (window.innerWidth <= 480 ? 1 : window.innerWidth <= 768 ? 2 : 3))
+          ) + "%";
+        slider.style.transform = `translateX(${move})`;
+      }
+
+      document
+        .getElementById("next")
+        .addEventListener("click", () => moveSlide(1));
+      document
+        .getElementById("prev")
+        .addEventListener("click", () => moveSlide(-1));
+      document
+        .querySelector(".slider-container")
+        .addEventListener("mouseenter", () => clearInterval(interval));
+      document
+        .querySelector(".slider-container")
+        .addEventListener("mouseleave", startSlider);
+
+      startSlider();
+    </script>
+  </body>
+</html>

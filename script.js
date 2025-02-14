@@ -41,3 +41,55 @@ document.addEventListener("click", function (event) {
     arrow.classList.remove("rotate");
   }
 });
+
+
+
+const slider = document.getElementById('slider');
+const slides = document.querySelectorAll('.service-item');
+let index = 0;
+let interval;
+
+// Clone first and last slides for infinite effect
+slider.appendChild(slides[0].cloneNode(true));
+slider.insertBefore(slides[slides.length - 1].cloneNode(true), slides[0]);
+
+function startSlider() {
+    interval = setInterval(() => moveSlide(1), 1000);
+}
+
+function moveSlide(dir) {
+    index += dir;
+    if (index < 0) {
+        index = slides.length - 1;
+        slider.style.transition = "none";
+        slider.style.transform = `translateX(-${index * 100}%)`;
+        requestAnimationFrame(() => {
+            setTimeout(() => {
+                slider.style.transition = "transform 0.5s ease-in-out";
+                moveSlide(1);
+            });
+        });
+        return;
+    }
+    if (index >= slides.length) {
+        index = 0;
+        slider.style.transition = "none";
+        slider.style.transform = `translateX(0%)`;
+        requestAnimationFrame(() => {
+            setTimeout(() => {
+                slider.style.transition = "transform 0.5s ease-in-out";
+                moveSlide(1);
+            });
+        });
+        return;
+    }
+    const move = -(index * (100 / (window.innerWidth <= 480 ? 1 : window.innerWidth <= 768 ? 2 : 3))) + '%';
+    slider.style.transform = `translateX(${move})`;
+}
+
+document.getElementById('nextBtn').addEventListener('click', () => moveSlide(1));
+document.getElementById('prevBtn').addEventListener('click', () => moveSlide(-1));
+document.querySelector('.service-carousel').addEventListener('mouseenter', () => clearInterval(interval));
+document.querySelector('.service-carousel').addEventListener('mouseleave', startSlider);
+
+startSlider();
