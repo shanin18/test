@@ -929,6 +929,7 @@ body {
     font-family: Barlow;
     cursor: pointer;
 }
+
 /* cta section ends */
 
 /* about us banner section starts*/
@@ -948,11 +949,81 @@ body {
     letter-spacing: -1.2px;
     text-align: center;
 }
+
 /* about us banner section ends*/
 
 
+/* career section starts */
+.career {
+    padding: 100px 0;
+    position: relative;
+}
+
+.career-star-left {
+    position: absolute;
+    top: 120px;
+    left: 35px;
+}
+
+.career-content-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 64px;
+}
+
+.career-card-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 64px;
+}
+
+.career-card {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    max-width: 559px;
+    width: 100%;
+}
+
+.career-card-header {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.career-card-header h3 {
+    color: var(--primary);
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 38px;
+}
+
+.career-card p {
+    font-size: 20px;
+    line-height: 30px;
+}
+
+.career-image-wrapper {
+    position: relative;
+}
+
+.career-spike {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.career-lines {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+/* career section ends */
+
 /* footer starts */
-.footer{
+.footer {
     background-image: url("./assets/footer-bg.png");
     background-repeat: no-repeat;
     background-size: cover;
@@ -986,7 +1057,7 @@ body {
 }
 
 .footer-links h4,
-.footer-contact h4{
+.footer-contact h4 {
     color: var(--white);
     font-size: 24px;
     font-weight: 700;
@@ -1026,7 +1097,7 @@ body {
     background-color: var(--white);
 }
 
-.footer-bottom p{
+.footer-bottom p {
     text-align: center;
     line-height: 20px;
     color: var(--dark);
