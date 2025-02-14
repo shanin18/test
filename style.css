@@ -931,6 +931,26 @@ body {
 }
 /* cta section ends */
 
+/* about us banner section starts*/
+.about-us-banner {
+    background-image: url("./assets/about-us-banner.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    padding: 100px 0;
+}
+
+.about-us-banner h1 {
+    color: var(--white);
+    font-size: 60px;
+    font-weight: 700;
+    line-height: 72px;
+    letter-spacing: -1.2px;
+    text-align: center;
+}
+/* about us banner section ends*/
+
+
 /* footer starts */
 .footer{
     background-image: url("./assets/footer-bg.png");
