@@ -138,44 +138,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 // smooth scroll like lenis
-document.addEventListener("DOMContentLoaded", () => {
-  const scrollContainer = document.querySelector(".smooth-scroll");
+let scrollY = window.scrollY;
+let easeScrollY = scrollY;
+let speed = 0.08;
 
-  if (!scrollContainer) {
-      console.error("🚨 Error: .smooth-scroll not found on this page!");
-      return;
-  }
+const smoothScroll = () => {
+  easeScrollY += (scrollY - easeScrollY) * speed;
+  document.querySelector(".smooth-scroll").style.transform = `translateY(${-easeScrollY}px)`;
+  requestAnimationFrame(smoothScroll);
+};
 
-  const totalHeight = scrollContainer.scrollHeight; // Get total height of the scrollable content
-  const viewportHeight = window.innerHeight; // Viewport height for scroll boundaries
-  document.body.style.height = `${totalHeight}px`; // Set the body's height to the scrollable content height
-
-  let scrollY = window.scrollY;
-  let easeScrollY = scrollY;
-  let speed = 0.08;
-
-  // Update the smooth scroll position based on wheel movement
-  const smoothScroll = () => {
-      easeScrollY += (scrollY - easeScrollY) * speed;
-      // Constrain easeScrollY to ensure it doesn't go past the content
-      easeScrollY = Math.max(0, Math.min(totalHeight - viewportHeight, easeScrollY));
-
-      scrollContainer.style.transform = `translateY(${-easeScrollY}px)`;
-      requestAnimationFrame(smoothScroll);
-  };
-
-  // Track scroll position based on window.scrollY
-  window.addEventListener("scroll", () => {
-      scrollY = window.scrollY;
-  });
-
-  // Track wheel event for mouse scroll and update scrollY accordingly
-  window.addEventListener("wheel", (event) => {
-      scrollY = Math.max(0, Math.min(totalHeight - viewportHeight, scrollY + event.deltaY));
-  });
-
-  smoothScroll(); // Start the smooth scroll loop
+window.addEventListener("wheel", (event) => {
+  scrollY = Math.max(0, Math.min(document.body.scrollHeight - window.innerHeight, scrollY + event.deltaY));
 });
 
-
+document.addEventListener("DOMContentLoaded", () => {
+  const scrollContainer = document.querySelector(".smooth-scroll");
+  document.body.style.height = `${scrollContainer.scrollHeight}px`;
+  smoothScroll();
+});
 
