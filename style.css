@@ -1220,7 +1220,7 @@ main {
     overflow: hidden;
 }
 
-.career-img-right img{
+.career-img-right img {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -1246,22 +1246,54 @@ main {
     position: relative;
 }
 
+.about-us-growth-left {
+    flex-shrink: 0;
+}
+
+.about-us-growth-main-img {
+    max-width: 620px;
+    max-height: 723px;
+    border-radius: 296px 296px 0px 0px;
+    overflow: hidden;
+}
+
+.about-us-growth-main-img img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
 .about-us-growth-left-img {
+    max-width: 171px;
     position: absolute;
     top: 0;
     left: 0;
 }
 
+.about-us-growth-left-img img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
 .about-us-growth-right-img {
+    max-width: 222px;
     position: absolute;
     top: -90px;
     right: 0px;
+}
+
+.about-us-growth-right-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .about-us-growth-wrapper {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 20px;
 }
 
 .about-us-growth-left {
@@ -1275,10 +1307,11 @@ main {
 }
 
 .about-us-growth-right h2 {
-    font-size: 48px;
+    /* font-size: 48px;
     font-weight: 700;
     line-height: 60px;
-    letter-spacing: -0.96px;
+    letter-spacing: -0.96px; */
+    text-align: left;
     margin-bottom: 42px;
 }
 
@@ -1316,7 +1349,7 @@ main {
     max-height: 104px;
 }
 
-.footer-logo img{
+.footer-logo img {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -1336,7 +1369,7 @@ main {
     gap: 24px;
 }
 
-.payment-icons img{
+.payment-icons img {
     width: 65px;
     height: 46px;
 }
