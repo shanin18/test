@@ -163,6 +163,7 @@ main {
     transition-delay: 0.6s;
     border-radius: 8px;
     color: var(--primary);
+    transition: all 0.6s ease;
 }
 
 .btn-ghost::before {
@@ -200,6 +201,7 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: all 0.6s ease;
 }
 
 .btn-ghost span {
@@ -246,22 +248,76 @@ main {
     transform: translateY(-24px);
 }
 
+.btn-ghost:active {
+    transform: scale(0.95);
+  }
+
 /* btn ghost */
 
 /* btn fill */
 .btn-fill {
-    width: 90px;
-    height: 44px;
+    display: inline-block;
+    min-width: 90px;
+    min-height: 44px;
     border-radius: 8px;
     font-size: 16px;
     color: var(--white);
-    font-weight: 600;
-    background-color: var(--primary);
-    border: none;
+    transition: all .6s;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
     display: flex;
     align-items: center;
     justify-content: center;
-}
+    font-weight: 600;
+    font-family: "Barlow";
+    border: none;
+  }
+  
+  .btn-fill::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--primary);
+    border-radius: 8px;
+    z-index: -2;
+  }
+  
+  .btn-fill::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    background-color: #d39308;
+    transition: all .3s;
+    border-radius: 8px;
+    z-index: -1;
+  }
+  
+  .btn-fill:hover {
+    color: var(--white);
+  }
+  
+  .btn-fill:hover::before {
+    width: 100%;
+  }
+
+  .btn-fill:active {
+    transform: scale(0.95);
+  }
+
+  .btn-fill svg {
+    transition: all 0.5s ease;
+  }
+
+  .btn-fill:hover svg {
+    transform: rotate(45deg);
+  }
 
 /* btn fill */
 
@@ -453,6 +509,10 @@ main {
     color: var(--dark) !important;
     background: var(--primary);
     transition: all 0.6s cubic-bezier(0.42, 0, 0.58, 1) 0s;
+}
+
+.btn-outline:active {
+    transform: scale(0.95);
 }
 
 /* btn outline */
