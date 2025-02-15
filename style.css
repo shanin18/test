@@ -409,7 +409,6 @@ main {
 
 .hero-container {
     max-width: 1426px;
-    width: 100%;
     margin: 0 auto;
 }
 
@@ -493,16 +492,20 @@ main {
     position: absolute;
     top: -40px;
     right: -40px;
-    width: 137px;
-    height: 137px;
+    max-width: 137px;
     flex-shrink: 0;
+}
+
+.woman-spike img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .hero-content {
     text-align: center;
     max-width: 628px;
     width: 100%;
-    margin: auto;
     padding: 0 24px;
 }
 
@@ -854,6 +857,7 @@ main {
     position: absolute;
     top: 70px;
     left: 70px;
+    z-index: -1;
 }
 
 .steps-bg-right {
@@ -879,9 +883,8 @@ main {
 
 .steps-wrapper {
     margin-top: 64px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     gap: 17px;
     position: relative;
 }
@@ -904,7 +907,7 @@ main {
 }
 
 .step-2 {
-    margin-bottom: -120px;
+    margin-top: 80px;
 }
 
 .step .icon {
@@ -1287,6 +1290,12 @@ main {
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+.about-us-feature-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
 }
 
 .about-us-growth-wrapper {
