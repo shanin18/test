@@ -71,6 +71,14 @@ main {
     padding-top: 90px;
 }
 
+.smooth-scroll {
+    will-change: transform;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+}
+
 /* common starts */
 .container {
     max-width: 1280px;
