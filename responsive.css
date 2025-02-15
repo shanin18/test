@@ -167,6 +167,7 @@
   }
 
   .growth-bg-left {
+    top: -64px;
     max-width: 100px;
   }
 

@@ -1,5 +1,3 @@
-
-// language dropdown
 // language dropdown
 const dropdownBtn = document.getElementById("selected-lang");
 const dropdownMenu = document.getElementById("dropdown");
@@ -67,6 +65,24 @@ document.addEventListener("DOMContentLoaded", function () {
   overlay.addEventListener("click", toggleMenu);
 });
 
+
+document.addEventListener("DOMContentLoaded", () => {
+  // Select all elements with the 'aos' class
+  const elements = document.querySelectorAll(".aos");
+
+  // Create an IntersectionObserver to track elements entering the viewport
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        // Add the 'visible' class when the element is in the viewport
+        entry.target.classList.add("visible");
+      }
+    });
+  }, { threshold: 0.2 });
+
+  // Observe each element
+  elements.forEach(element => observer.observe(element));
+});
 
 // carousel
 document.addEventListener("DOMContentLoaded", function () {
@@ -156,7 +172,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-// smooth scroll like lenis
+
 // smooth scroll like lenis
 document.addEventListener("DOMContentLoaded", () => {
   const scrollContainer = document.querySelector(".smooth-scroll");
