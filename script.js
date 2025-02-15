@@ -42,8 +42,32 @@ if (!dropdownBtn || !dropdownMenu || !arrow) {
   });
 }
 
+document.addEventListener("DOMContentLoaded", function () {
+  const hamburger = document.getElementById("hamburger");
+  const mobileMenu = document.getElementById("mobileMenu");
+  const overlay = document.getElementById("overlay");
 
-// carousel
+  // Function to toggle mobile menu
+  function toggleMenu() {
+    mobileMenu.classList.toggle("open");
+    overlay.classList.toggle("active");
+    
+    // Prevent scrolling when menu is open
+    if (mobileMenu.classList.contains("open")) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+  }
+
+  // Click event on hamburger menu
+  hamburger.addEventListener("click", toggleMenu);
+
+  // Click event on overlay to close menu
+  overlay.addEventListener("click", toggleMenu);
+});
+
+
 // carousel
 document.addEventListener("DOMContentLoaded", function () {
   const slider = document.getElementById("slider");
@@ -172,6 +196,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   smoothScroll(); // Start the smooth scroll loop
 });
+
 
 
 
