@@ -82,7 +82,6 @@ main {
 /* common starts */
 .container {
     max-width: 1280px;
-    width: 100%;
     margin: 0 auto;
 }
 
@@ -830,10 +829,11 @@ main {
     right: 0;
     max-width: 222px;
 }
+
 .growth-bg-left img {
-   width: 100%;
-   height: 100%;
-   object-fit: cover;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .growth-bg-right img {
@@ -1288,12 +1288,25 @@ main {
 .footer-wrapper {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    row-gap: 48px;
+    column-gap: 20px;
 }
 
 .footer-info {
     display: flex;
     flex-direction: column;
     gap: 32px;
+}
+
+.footer-logo {
+    max-width: 104px;
+    max-height: 104px;
+}
+
+.footer-logo img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .footer-text {
@@ -1308,6 +1321,11 @@ main {
     display: flex;
     align-items: center;
     gap: 24px;
+}
+
+.payment-icons img{
+    width: 65px;
+    height: 46px;
 }
 
 .footer-links h4,
@@ -1369,7 +1387,7 @@ main {
 
 .footer-bottom {
     margin-top: 48px;
-    padding: 24px;
+    padding: 24px 16px;
     background-color: var(--white);
 }
 
