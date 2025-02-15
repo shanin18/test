@@ -940,15 +940,32 @@ main {
 }
 
 .pricing-top-bg {
+    max-width: 117px;
+    flex-shrink: 0;
     position: absolute;
     top: 100px;
     right: 0;
 }
 
 .pricing-bottom-bg {
+    max-width: 293px;
+    flex-shrink: 0;
     position: absolute;
     bottom: 0;
     right: 0;
+    z-index: -1;
+}
+
+.pricing-top-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.pricing-bottom-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .pricing-wrapper {

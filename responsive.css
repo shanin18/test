@@ -59,8 +59,17 @@
   .growth-bg-left {
     max-width: 122px;
   }
+
   .growth-bg-right {
     max-width: 200px;
+  }
+
+  .pricing-top-bg {
+    max-width: 97px;
+  }
+
+  .pricing-bottom-bg {
+    max-width: 270px;
   }
 }
 
@@ -123,8 +132,17 @@
   .growth-bg-left {
     max-width: 100px;
   }
+
   .growth-bg-right {
     max-width: 170px;
+  }
+
+  .pricing-top-bg {
+    max-width: 77px;
+  }
+
+  .pricing-bottom-bg {
+    max-width: 240px;
   }
 }
 
@@ -150,12 +168,44 @@
   .growth-wrapper {
     margin-top: 32px;
   }
-  
+
   .growth-bg-left {
     max-width: 96px;
   }
+
   .growth-bg-right {
     max-width: 142px;
+  }
+
+  .pricing-top-bg {
+    max-width: 77px;
+  }
+
+  .pricing-bottom-bg {
+    max-width: 240px;
+  }
+
+  .pricing-header {
+    padding: 32px 16px;
+  }
+
+  .pricing-body {
+    padding: 24px 16px 0;
+    text-align: center;
+  }
+
+  .pricing-footer {
+    padding: 32px 16px;
+  }
+
+  .pricing-body .price {
+    font-size: 36px;
+    line-height: 44px
+  }
+
+  .pricing-body .duration {
+    font-size: 30px;
+    line-height: 38px;
   }
 }
 
@@ -173,6 +223,19 @@
 
   .growth-2 {
     position: static;
+  }
+
+  .pricing-top-bg {
+    max-width: 57px;
+  }
+
+  .pricing-bottom-bg {
+    display: none;
+  }
+
+  .pricing-wrapper {
+    flex-direction: column;
+    align-items: center;
   }
 }
 
