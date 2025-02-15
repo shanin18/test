@@ -1078,16 +1078,17 @@ main {
 
 /* cta section starts */
 .cta {
-    padding: 100px;
+    padding: 100px 0;
 }
 
 .cta-wrapper {
     background-image: url("./assets/cta-bg.png") !important;
     background: no-repeat;
     background-attachment: fixed;
+    background-position: center;
     background-size: cover;
     border-radius: 32px;
-    padding: 64px;
+    padding: 64px 16px;
     display: flex;
     justify-content: center;
 }
