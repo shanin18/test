@@ -346,7 +346,7 @@ main {
 
 .hero-wrapper {
     display: flex;
-    padding: 20px 40px 0;
+    padding: 20px 0 0;
 }
 
 .image-wrapper-left,

@@ -93,3 +93,5 @@ document.querySelector('.service-carousel').addEventListener('mouseenter', () =>
 document.querySelector('.service-carousel').addEventListener('mouseleave', startSlider);
 
 startSlider();
+
+
