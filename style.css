@@ -430,6 +430,7 @@ main {
 
 .hamburger {
     display: none;
+    cursor: pointer;
 }
 
 /* language dropdown */
