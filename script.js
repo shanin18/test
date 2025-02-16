@@ -40,17 +40,16 @@ if (!dropdownBtn || !dropdownMenu || !arrow) {
   });
 }
 
+// mobile menu
 document.addEventListener("DOMContentLoaded", function () {
   const hamburger = document.getElementById("hamburger");
   const mobileMenu = document.getElementById("mobileMenu");
   const overlay = document.getElementById("overlay");
 
-  // Function to toggle mobile menu
   function toggleMenu() {
     mobileMenu.classList.toggle("open");
     overlay.classList.toggle("active");
-    
-    // Prevent scrolling when menu is open
+
     if (mobileMenu.classList.contains("open")) {
       document.body.style.overflow = "hidden";
     } else {
@@ -58,29 +57,22 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // Click event on hamburger menu
   hamburger.addEventListener("click", toggleMenu);
-
-  // Click event on overlay to close menu
   overlay.addEventListener("click", toggleMenu);
 });
 
-
+// aos animations
 document.addEventListener("DOMContentLoaded", () => {
-  // Select all elements with the 'aos' class
   const elements = document.querySelectorAll(".aos");
 
-  // Create an IntersectionObserver to track elements entering the viewport
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        // Add the 'visible' class when the element is in the viewport
         entry.target.classList.add("visible");
       }
     });
   }, { threshold: 0.2 });
 
-  // Observe each element
   elements.forEach(element => observer.observe(element));
 });
 
@@ -88,129 +80,157 @@ document.addEventListener("DOMContentLoaded", () => {
 document.addEventListener("DOMContentLoaded", function () {
   const slider = document.getElementById("slider");
   const slides = document.querySelectorAll(".service-item");
-
-  if (!slider || slides.length === 0) {
-    console.error("Slider or slides not found. Check your HTML structure.");
-    return;
-  }
-
-  let index = 1; // Start at 1 to account for cloned slides
-  let interval;
-
-  // Clone first and last slides for infinite loop effect
-  const firstClone = slides[0] ? slides[0].cloneNode(true) : null;
-  const lastClone = slides[slides.length - 1] ? slides[slides.length - 1].cloneNode(true) : null;
-
-  if (firstClone) firstClone.setAttribute("id", "first-clone");
-  if (lastClone) lastClone.setAttribute("id", "last-clone");
-
-  if (firstClone && lastClone) {
-    slider.appendChild(firstClone);
-    slider.insertBefore(lastClone, slides[0]);
-  }
-
-  // Update slides list after cloning
-  const allSlides = document.querySelectorAll(".service-item");
-
-  function startSlider() {
-    clearInterval(interval); // Prevent multiple intervals
-    interval = setInterval(() => moveSlide(1), 3000);
-  }
-
-  function moveSlide(dir) {
-    if (!allSlides.length) {
-      console.warn("No slides available.");
-      return;
-    }
-
-    index += dir;
-
-    // Determine slides per view based on screen width
-    const visibleSlides = window.innerWidth <= 480 ? 1 : window.innerWidth <= 768 ? 2 : 3;
-    const move = -(index * (100 / visibleSlides)) + "%";
-
-    slider.style.transition = "transform 0.5s ease-in-out";
-    slider.style.transform = `translateX(${move})`;
-
-    setTimeout(() => {
-      if (allSlides[index] && allSlides[index].id === "first-clone") {
-        index = 1;
-        resetPosition();
-      } else if (allSlides[index] && allSlides[index].id === "last-clone") {
-        index = allSlides.length - 2;
-        resetPosition();
-      }
-    }, 500); // Wait for transition to complete
-  }
-
-  function resetPosition() {
-    slider.style.transition = "none";
-    const visibleSlides = window.innerWidth <= 480 ? 1 : window.innerWidth <= 768 ? 2 : 3;
-    const move = -(index * (100 / visibleSlides)) + "%";
-    slider.style.transform = `translateX(${move})`;
-  }
-
-  // Ensure buttons exist before adding event listeners
   const nextBtn = document.getElementById("nextBtn");
   const prevBtn = document.getElementById("prevBtn");
-  const carousel = document.querySelector(".service-carousel");
+  const pagination = document.querySelector(".pagination");
 
-  if (nextBtn) nextBtn.addEventListener("click", () => moveSlide(1));
-  if (prevBtn) prevBtn.addEventListener("click", () => moveSlide(-1));
-  if (carousel) {
-    carousel.addEventListener("mouseenter", () => clearInterval(interval));
-    carousel.addEventListener("mouseleave", startSlider);
+  if (!slider || slides.length === 0) {
+      console.error("Slider or slides not found.");
+      return;
   }
 
-  // Start slider after ensuring elements exist
-  setTimeout(() => {
-    slider.style.transition = "transform 0.5s ease-in-out";
-    moveSlide(0); // Reset to first actual slide
-  }, 50);
+  let index = slides.length;
+  let isMoving = false;
+  let interval;
+  let slideWidth = getSlideWidth();
+
+  function getSlideWidth() {
+      return document.querySelector(".service-item").offsetWidth + 24;
+  }
+
+  function updateSlideWidth() {
+      slideWidth = getSlideWidth();
+      slider.style.transform = `translateX(-${index * slideWidth}px)`;
+  }
+
+  window.addEventListener("resize", updateSlideWidth);
+
+  slides.forEach((slide) => {
+      const clone = slide.cloneNode(true);
+      slider.appendChild(clone);
+  });
+
+  slides.forEach((slide) => {
+      const clone = slide.cloneNode(true);
+      slider.insertBefore(clone, slides[0]);
+  });
+
+  slider.style.transform = `translateX(-${index * slideWidth}px)`;
+
+  pagination.innerHTML = "";
+  for (let i = 0; i < slides.length; i++) {
+      const circle = document.createElement("div");
+      circle.classList.add("pagination-circle");
+      if (i === 0) circle.classList.add("active");
+      circle.dataset.index = i;
+      pagination.appendChild(circle);
+  }
+
+  function updatePagination() {
+      document.querySelectorAll(".pagination-circle").forEach((dot, i) => {
+          dot.classList.toggle("active", i === (index % slides.length));
+      });
+  }
+
+  function moveSlide(direction) {
+      if (isMoving) return;
+      isMoving = true;
+
+      index = direction === "next" ? index + 1 : index - 1;
+      slider.style.transition = "transform 0.5s ease-in-out";
+      slider.style.transform = `translateX(-${index * slideWidth}px)`;
+
+      setTimeout(() => {
+          if (index >= slides.length * 2) {
+              slider.style.transition = "none";
+              index = slides.length;
+              slider.style.transform = `translateX(-${index * slideWidth}px)`;
+          }
+          if (index <= 0) {
+              slider.style.transition = "none";
+              index = slides.length;
+              slider.style.transform = `translateX(-${index * slideWidth}px)`;
+          }
+          updatePagination();
+          isMoving = false;
+      }, 500);
+  }
+
+  function startSlider() {
+      interval = setInterval(() => moveSlide("next"), 3000);
+  }
+
+  function stopSlider() {
+      clearInterval(interval);
+  }
+
+  if (nextBtn) nextBtn.addEventListener("click", () => moveSlide("next"));
+  if (prevBtn) prevBtn.addEventListener("click", () => moveSlide("prev"));
+
+  document.querySelectorAll(".pagination-circle").forEach((dot) => {
+      dot.addEventListener("click", function () {
+          if (isMoving) return;
+          index = parseInt(this.dataset.index) + slides.length;
+          moveSlide();
+      });
+  });
+
+  let startX = 0;
+  let endX = 0;
+
+  slider.addEventListener("touchstart", (e) => {
+      startX = e.touches[0].clientX;
+  });
+
+  slider.addEventListener("touchmove", (e) => {
+      endX = e.touches[0].clientX;
+  });
+
+  slider.addEventListener("touchend", () => {
+      if (startX - endX > 50) {
+          moveSlide("next");
+      } else if (endX - startX > 50) {
+          moveSlide("prev");
+      }
+  });
 
   startSlider();
 });
-
-
 
 // smooth scroll like lenis
 document.addEventListener("DOMContentLoaded", () => {
   const scrollContainer = document.querySelector(".smooth-scroll");
 
   if (!scrollContainer) {
-    console.error("🚨 Error: .smooth-scroll not found on this page!");
+    console.error(".smooth-scroll not found on this page!");
     return;
   }
 
-  const totalHeight = scrollContainer.scrollHeight; // Get total height of the scrollable content
-  const viewportHeight = window.innerHeight; // Viewport height for scroll boundaries
-  document.body.style.height = `${totalHeight}px`; // Set the body's height to the scrollable content height
+  const totalHeight = scrollContainer.scrollHeight;
+  const viewportHeight = window.innerHeight;
+  document.body.style.height = `${totalHeight}px`;
 
   let scrollY = window.scrollY;
   let easeScrollY = scrollY;
   let speed = 0.08;
 
-  // Update the smooth scroll position based on wheel movement
   const smoothScroll = () => {
     easeScrollY += (scrollY - easeScrollY) * speed;
-    // Constrain easeScrollY to ensure it doesn't go past the content
     easeScrollY = Math.max(0, Math.min(totalHeight - viewportHeight, easeScrollY));
 
     scrollContainer.style.transform = `translateY(${-easeScrollY}px)`;
     requestAnimationFrame(smoothScroll);
   };
 
-  // Track scroll position based on window.scrollY
   window.addEventListener("scroll", () => {
     scrollY = window.scrollY;
   });
 
-  // Track wheel event for mouse scroll and update scrollY accordingly
   window.addEventListener("wheel", (event) => {
     scrollY = Math.max(0, Math.min(totalHeight - viewportHeight, scrollY + event.deltaY));
   });
 
-  smoothScroll(); // Start the smooth scroll loop
+  smoothScroll();
 });
 
 
