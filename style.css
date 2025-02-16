@@ -1105,11 +1105,17 @@ main {
 .pricing-card {
     background: var(--white);
     border-radius: 8px;
-    box-shadow: 0px 4px 4px 0px rgba(51, 51, 51, 0.04),
-        0px 4px 16px 0px rgba(51, 51, 51, 0.08);
     overflow: hidden;
     max-width: 384px;
     width: 100%;
+    transition-duration: 0.3s;
+    border: 1px solid rgba(51, 51, 51, 0.07),
+}
+
+.pricing-card:hover {
+    transform: translateY(-20px);
+    box-shadow: 0px 4px 4px 0px rgba(51, 51, 51, 0.04),
+    0px 4px 16px 0px rgba(51, 51, 51, 0.08);
 }
 
 .pricing-header {
@@ -1549,6 +1555,12 @@ main {
     color: var(--white);
     font-size: 18px;
     line-height: 28px;
+    transition-duration: 0.3s;
+}
+
+.footer-links a:hover {
+    color: var(--primary);
+    text-decoration: underline;
 }
 
 .footer-contact {
@@ -1634,6 +1646,9 @@ main {
   }
   
   .aos.delay-2 { 
+    transition-delay: 0.3s; 
+  }
+  .aos.delay-3 { 
     transition-delay: 0.4s; 
   }
 /* animations */
